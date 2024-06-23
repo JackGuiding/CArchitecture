@@ -10,5 +10,6 @@ gcc src\M_Input.c -c -o build\M_Input.o
 gcc build\main.o build\Factory.o build\Context.o build\Repo_Role.o build\B_Game.o build\Do_Role.o build\M_Input.o lib\raylib.dll -o bin\main.exe
 
 copy lib\raylib.dll bin\raylib.dll
+xcopy assets bin\assets /s /e /y /d
 
 bin\main.exe
