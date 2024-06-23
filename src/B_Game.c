@@ -28,6 +28,8 @@ void B_Game_Tick(Context *ctx, float deltaTime) {
             ctx->fixTimer -= ctx->fixInterval;
         }
     }
+
+    // LateTick: 刷新显示位置, 相机跟随, 音效/BGM, 灯光
     
 }
 
