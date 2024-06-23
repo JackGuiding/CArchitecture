@@ -11,18 +11,18 @@ typedef struct Repo_Role {
 } Repo_Role;
 
 // 创建
-Repo_Role* R_Role_Create();
+Repo_Role* Repo_Role_Create();
 
 // 释放
-void R_Role_Free(Repo_Role* r_role);
+void Repo_Role_Free(Repo_Role* r_role);
 
 // 添加实体
-void R_Role_Add(Repo_Role* r_role, E_Role* e_role);
+void Repo_Role_Add(Repo_Role* r_role, E_Role* e_role);
 
 // 移除实体
-void R_Role_Remove(Repo_Role* r_role, E_Role* e_role);
+void Repo_Role_Remove(Repo_Role* r_role, E_Role* e_role);
 
 // 查找实体
-E_Role* R_Role_Get(Repo_Role* r_role, int id);
+E_Role* Repo_Role_Get(Repo_Role* r_role, int id);
 
 #endif
