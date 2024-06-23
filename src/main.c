@@ -16,13 +16,15 @@ int main() {
     // 2. 生成敌人
     // 3. 循环: 移动主角, 发射子弹
 
+    // ==== Init ====
     ctx = Context_Create();
 
-    InitWindow(640, 360, "Game");
+    InitWindow(1280, 720, "Game");
 
-    SetTargetFPS(60);
+    // SetTargetFPS(1000);
 
     // ==== Enter ====
+    // 登录页
     B_Game_Enter(ctx);
 
     // ==== Tick ====
@@ -30,6 +32,9 @@ int main() {
 
         float dt = GetFrameTime();
 
+        // 伪代码 if login.click => B_Game_Enter(ctx);
+
+        // 逻辑
         B_Game_Tick(ctx, dt);
 
         // 开始绘制
@@ -39,6 +44,8 @@ int main() {
         ClearBackground(RAYWHITE);
 
         B_Game_Draw(ctx);
+
+        DrawFPS(10, 10);
 
         // 结束绘制
         EndDrawing();

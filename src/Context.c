@@ -3,8 +3,11 @@
 #include <stdlib.h>
 
 Context* Context_Create() {
+
     // 上下文自身
     Context* ctx = (Context*)malloc(sizeof(Context));
+
+    ctx->fixInterval = 1.0f / 100.0f;
 
     // 仓库
     ctx->repo_role = Repo_Role_Create();

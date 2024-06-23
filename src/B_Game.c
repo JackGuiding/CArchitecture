@@ -11,21 +11,36 @@ void B_Game_Enter(Context *ctx) {
 // 一帧逻辑(1/60s = 0.0167s)
 void B_Game_Tick(Context *ctx, float deltaTime) {
 
-    // ==== 输入 ====
+    // ==== 1. 输入 ====
     // 输入模块: Process Input
     // - 来源: 硬件(键盘, 鼠标, 手柄), 网络, AI, 文件......
     M_Input_Tick(ctx->input, deltaTime);
 
-    // ==== 行为逻辑 ====
+    // ==== 2. 行为逻辑 ====
+    // deltaTime 每帧不一样的
+    ctx->fixTimer += deltaTime;
+    if (ctx->fixTimer < ctx->fixInterval) {
+        B_Game_FixTick(ctx, ctx->fixTimer);
+        ctx->fixTimer = 0;
+    } else {
+        while (ctx->fixTimer >= ctx->fixInterval) {
+            B_Game_FixTick(ctx, ctx->fixInterval);
+            ctx->fixTimer -= ctx->fixInterval;
+        }
+    }
+    
+}
+
+void B_Game_FixTick(Context *ctx, float fixdt) {
     for (int i = 0; i < ctx->repo_role->count; i += 1) {
         E_Role *role = ctx->repo_role->all[i];
         Vector2 moveAxis = ctx->input->moveAxis;
-        Do_Role_Move(ctx, role, moveAxis, deltaTime);
+        Do_Role_Move(ctx, role, moveAxis, fixdt);
     }
-
 }
 
 void B_Game_Draw(Context *ctx) {
+    // ==== 3. 绘制 ====
     // 画所有角色
     for (int i = 0; i < ctx->repo_role->count; i += 1) {
         E_Role *role = ctx->repo_role->all[i];
